@@ -1,14 +1,27 @@
-# intl_manager
-
-A new Flutter package project.
-
 ## Getting Started
 
-This project is a starting point for a Dart
-[package](https://flutter.io/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+### Use build args
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+--scan-dir      the path where to scan android style strings-xx.xml files
+
+--out-dir       ARB and dart file output path
+
+--gen-class     the dart class name of auto generated
+
+--file-name     the dart file name of auto generated.default is:"strings_define.dart"
+                (defaults to "strings_define.dart")
+
+--dev-locale    use which locale content to generate default dart class
+
+build: flutter packages pub run intl_manager:build --scan-dir=xx --out-dir=yy --gen-class=zz
+
+### Use json config
+`
+{
+  "scan-dir": "assets/i18n",
+  "out-dir": "lib/i18n/gen",
+  "gen-class": "AppStringsDefine",
+  "dev-locale": "zh"
+}
+`
+build: flutter packages pub run intl_manager:build
