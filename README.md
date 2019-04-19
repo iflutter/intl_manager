@@ -15,7 +15,7 @@
 
 build: flutter packages pub run intl_manager:build --scan-dir=xx --out-dir=yy --gen-class=zz
 
-### Use json config
+### Use json config 'intl_manager.json'
 `
 {
   "scan-dir": "assets/i18n",
