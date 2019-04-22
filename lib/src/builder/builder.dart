@@ -91,10 +91,10 @@ class IntlBuilder {
   }
 
   _buildI18Entity(I18nEntity entity, String fileName) {
-    var jsonObj = Xml2Arb.convertFromFile(entity.xmlFilePath, entity.locale.toLocaleString('_'));
+    var jsonObj = Xml2Arb.convertFromFile(
+        entity.xmlFilePath, entity.locale.toLocaleString('_'));
     String jsonStr = jsonEncode(jsonObj);
-    File outFile =
-        File(path.absolute(outDir.path, fileName));
+    File outFile = File(path.absolute(outDir.path, fileName));
     if (!outFile.existsSync()) {
       outFile.createSync();
     }

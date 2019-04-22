@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:xml/xml.dart' as xml;
 
 class Xml2Arb {
-  static Map<String, dynamic> convertFromFile(String filePath,String locale) {
+  static Map<String, dynamic> convertFromFile(String filePath, String locale) {
     File file = File(filePath);
     String content;
     try {
@@ -10,14 +10,14 @@ class Xml2Arb {
     } catch (e) {
       print(e);
     }
-    return convert(content,locale);
+    return convert(content, locale);
   }
 
-  static Map<String, dynamic> convert(String stringsXml,String locale) {
+  static Map<String, dynamic> convert(String stringsXml, String locale) {
     xml.XmlDocument result = xml.parse(stringsXml);
     var stringsList = result.rootElement.children;
     Map<String, dynamic> arbJson = {};
-    arbJson['@@locale']=locale;
+    arbJson['@@locale'] = locale;
     for (var se in stringsList) {
       String key = getNodeStringKey(se);
       String arbKey = normalizeKeyName(key);
