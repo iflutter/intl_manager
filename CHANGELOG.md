@@ -6,3 +6,8 @@
 
 * Fix 'intl' package's version(^0.15.8 -> ^0.15.7)
 * Format dart code style
+
+## [0.0.3]
+
+* Fix outDir not exists bug
+* Add Example code
