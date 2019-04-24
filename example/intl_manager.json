@@ -1,0 +1,7 @@
+{
+  "scan-dir": "res/strings",
+  "out-dir": "lib/i18n/gen",
+  "file-name": "app_strings_define.dart",
+  "gen-class": "AppStringsDefine",
+  "dev-locale": "en"
+}

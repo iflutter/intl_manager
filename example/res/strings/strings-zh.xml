@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="change_locale">切换区域</string>
+    <string name="app_title">intl_manager例子</string>
+    <string name="pushed_title">你已经点击按钮的次数:</string>
+    <string name="increment">增加</string>
+</resources>

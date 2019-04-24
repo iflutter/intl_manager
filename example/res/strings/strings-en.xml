@@ -1,0 +1,6 @@
+<resources>
+    <string name="change_locale">change locale</string>
+    <string name="app_title">intl_manager example</string>
+    <string name="pushed_title">You have pushed the button this many times:</string>
+    <string name="increment">Increment</string>
+</resources>
