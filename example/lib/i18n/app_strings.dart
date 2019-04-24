@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
-import 'package:example/i18n/gen/app_strings_define.dart';
+import 'gen/app_strings_define.dart';
 import 'gen/messages_all.dart';
 
 ///this delegate need register in you main.dart file[main]
