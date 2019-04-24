@@ -16,7 +16,7 @@ class BuildResult {
 
 class IntlBuilder {
   final RegExp stringsXmlNameReg =
-      RegExp('^strings(-[a-zA-Z]{2})(-[a-zA-Z]{3})?.xml\$');
+      RegExp('^strings(-[a-zA-Z]{1,10})(-[a-zA-Z]{1,10})?.xml\$');
   Directory scanDir;
   Directory outDir;
   File outDefineDartFile;
