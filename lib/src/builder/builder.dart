@@ -23,6 +23,7 @@ class IntlBuilder {
   String genClass;
   File genClassFile;
   Locale devLocale;
+  final List<I18nEntity> i18nEnttitys = List();
 
   IntlBuilder(
       {String scanDir,
@@ -36,6 +37,9 @@ class IntlBuilder {
     this.genClass = genClass;
     this.outDefineDartFile = genClassFile;
     this.devLocale = devLocale;
+    if(!this.outDir.existsSync()){
+      this.outDir.createSync();
+    }
     print(this.scanDir);
     print(this.outDir);
     print(this.devLocale);
@@ -44,7 +48,6 @@ class IntlBuilder {
 
   BuildResult build() {
     List<FileSystemEntity> fseList = scanDir.listSync();
-    List<I18nEntity> i18nEnttitys = List();
     bool foundDevLang = false;
     for (FileSystemEntity fe in fseList) {
       if (fe is File) {
@@ -100,7 +103,7 @@ class IntlBuilder {
     }
     outFile.writeAsStringSync(jsonStr);
     if (entity.isDevLanguage) {
-      makeDefinesDartCodeFile(this.outDefineDartFile, this.genClass, jsonObj);
+      makeDefinesDartCodeFile(this.outDefineDartFile, this.genClass, jsonObj,i18nEnttitys);
     }
   }
 }
