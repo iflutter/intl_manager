@@ -1,6 +1,6 @@
 name: intl_manager
 description: A library tool that help you manager i18n strings in flutter,include convert from android "strings-xx.xml".
-version: 0.0.3
+version: 0.0.4
 author: iflutter team <shenkaige86@gmail.com>
 homepage: https://github.com/iflutter/intl_manager
 

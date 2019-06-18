@@ -11,3 +11,7 @@
 
 * Fix outDir not exists bug
 * Add Example code
+
+## [0.0.4]
+
+* Add \b, \t, \n, \a, \r support
