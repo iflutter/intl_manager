@@ -13,7 +13,7 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^0.1.2
 
-  intl: ^0.15.7
+  intl: '>=0.15.7'
   intl_translation: ^0.17.3
 
 
