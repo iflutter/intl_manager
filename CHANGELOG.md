@@ -15,3 +15,7 @@
 ## [0.0.4]
 
 * Add \b, \t, \n, \a, \r support
+
+## [0.0.4+1]
+
+* change 'intl' package version compatibility. now support intl >= 0.15.7
