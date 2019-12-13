@@ -19,3 +19,7 @@
 ## [0.0.4+1]
 
 * change 'intl' package version compatibility. now support intl >= 0.15.7
+
+## [0.0.4+2]
+
+*  fix flutter sdk dependencies conflict to support flutter v1.12.
