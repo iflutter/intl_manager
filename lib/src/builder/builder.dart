@@ -16,7 +16,7 @@ class BuildResult {
 
 class IntlBuilder {
   final RegExp stringsXmlNameReg =
-      RegExp('^strings(-[a-zA-Z]{1,10})(-[a-zA-Z]{1,10})?.xml\$');
+  RegExp('^strings(-[a-zA-Z]{1,10})(-[a-zA-Z]{1,10})?.xml\$');
   Directory scanDir;
   Directory outDir;
   File outDefineDartFile;
@@ -25,19 +25,18 @@ class IntlBuilder {
   Locale devLocale;
   final List<I18nEntity> i18nEnttitys = List();
 
-  IntlBuilder(
-      {String scanDir,
-      String outDir,
-      String genClass,
-      File genClassFile,
-      Locale devLocale}) {
+  IntlBuilder({String scanDir,
+    String outDir,
+    String genClass,
+    File genClassFile,
+    Locale devLocale}) {
     //
     this.scanDir = Directory(scanDir);
     this.outDir = Directory(outDir);
     this.genClass = genClass;
     this.outDefineDartFile = genClassFile;
     this.devLocale = devLocale;
-    if(!this.outDir.existsSync()){
+    if (!this.outDir.existsSync()) {
       this.outDir.createSync();
     }
     print(this.scanDir);
@@ -52,21 +51,16 @@ class IntlBuilder {
     for (FileSystemEntity fe in fseList) {
       if (fe is File) {
         String fileName = path.basename(fe.path);
-        Iterable<Match> matchList =
-            stringsXmlNameReg.allMatches(fileName).toList();
-        int index = 0;
+        Match matched = stringsXmlNameReg.firstMatch(fileName);
         String languageCode;
         String countryCode;
-        for (Match m in matchList) {
-          String str = m.group(1);
-          str = str.substring(1, str.length);
-          if (index == 0) {
-            languageCode = str;
-          } else if (index == 1) {
-            countryCode = str;
-            break;
+        if (matched != null && matched.groupCount > 0) {
+          languageCode = matched.group(1);
+          languageCode = languageCode?.replaceAll('-', '');
+          if (matched.groupCount > 1) {
+            countryCode = matched.group(2);
+            countryCode = countryCode?.replaceAll('-', '');
           }
-          index++;
         }
         if (languageCode != null) {
           Locale locale = Locale(languageCode, countryCode);
@@ -103,7 +97,8 @@ class IntlBuilder {
     }
     outFile.writeAsStringSync(jsonStr);
     if (entity.isDevLanguage) {
-      makeDefinesDartCodeFile(this.outDefineDartFile, this.genClass, jsonObj,i18nEnttitys);
+      makeDefinesDartCodeFile(
+          this.outDefineDartFile, this.genClass, jsonObj, i18nEnttitys);
     }
   }
 }

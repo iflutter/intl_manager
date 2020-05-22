@@ -23,3 +23,7 @@
 ## [0.0.4+2]
 
 *  fix flutter sdk dependencies conflict to support flutter v1.12.
+
+## [0.0.4+3]
+
+*  fix generate file name lose country info bug.
