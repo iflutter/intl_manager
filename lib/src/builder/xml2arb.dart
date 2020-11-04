@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:xml/xml.dart' as xml;
+import 'package:string_unescape/string_unescape.dart';
 
 class Xml2Arb {
   static Map<String, dynamic> convertFromFile(String filePath, String locale) {
@@ -22,70 +23,11 @@ class Xml2Arb {
       String key = getNodeStringKey(se);
       String arbKey = normalizeKeyName(key);
       if (arbKey != null && arbKey.isNotEmpty) {
-        arbJson[arbKey] = checkTextConvert(se.text);
+        arbJson[arbKey] = unescape(se.text);
         arbJson['@$arbKey'] = {'type': 'text'};
       }
     }
     return arbJson;
-  }
-
-  static final _convertCharCode = '\\'.codeUnitAt(0);
-
-  //\b, \t, \n, \a, \r
-  static final _convertCharT = '\t'.codeUnitAt(0);
-  static final _convertCharB = '\b'.codeUnitAt(0);
-  static final _convertCharN = '\n'.codeUnitAt(0);
-  static final _convertCharA = '\a'.codeUnitAt(0);
-  static final _convertCharR = '\r'.codeUnitAt(0);
-
-  static String checkTextConvert(String str) {
-    if (str == null || str.isEmpty) {
-      return '';
-    }
-    int size = str.length;
-    var charBuffer = List<int>();
-    for (int i = 0; i < size; i++) {
-      if (str.codeUnitAt(i) == _convertCharCode) {
-        if (i == size - 1) {
-          //all done
-          break;
-        } else {
-          //check next char
-          var nextCharCode = str.codeUnitAt(i + 1);
-          if (nextCharCode == _convertCharCode) {
-            //sb.write('\\');
-            charBuffer.add(_convertCharCode);
-          } else {
-            switch (nextCharCode) {
-              case 116 :
-              case 84 :
-                charBuffer.add(_convertCharT);
-                break;
-              case 98 :
-              case 66 :
-                charBuffer.add(_convertCharB);
-                break;
-              case 110 :
-              case 78 :
-                charBuffer.add(_convertCharN);
-                break;
-              case 97 :
-              case 65 :
-                charBuffer.add(_convertCharA);
-                break;
-              case 114 :
-              case 82 :
-                charBuffer.add(_convertCharR);
-                break;
-            }
-          }
-          i++;
-        }
-      } else {
-        charBuffer.add(str.codeUnitAt(i));
-      }
-    }
-    return String.fromCharCodes(charBuffer);
   }
 
   static String getNodeStringKey(xml.XmlNode node) {
